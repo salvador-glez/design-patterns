@@ -6,7 +6,11 @@ namespace Singleton
     {
         static void Main(string[] args)
         {
-            var context = new Context();
+            var context = Context.Instance;
+            var context2 = Context.Instance;
+             var context3 = Context.Instance;
+              var context4 = Context.Instance;
+               var context5 = Context.Instance;
             Process(context);
         }
 
