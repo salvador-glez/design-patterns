@@ -6,13 +6,29 @@ namespace Builder
     {
         static void Main(string[] args)
         {
-            ConsoleLogger consoleLogger = new ConsoleLogger(Console.Out);
-            consoleLogger.SetFormat("%DATE%  %PID% %MESSAGE%");
-            consoleLogger.SetColor("#000000");
+            // ConsoleLogger consoleLogger = new ConsoleLogger(Console.Out);
+            // consoleLogger.SetFormat("%DATE%  %PID% %MESSAGE%");
+            // consoleLogger.SetColor("#000000");
 
-            DataBaseLogger dbLogger = new DataBaseLogger("password=****;uid=123;hostname=localhost");
-            dbLogger.SetLogTable("LOG");
-            dbLogger.SetMaxAge(60);
+            // DataBaseLogger dbLogger = new DataBaseLogger("password=****;uid=123;hostname=localhost");
+            // dbLogger.SetLogTable("LOG");
+            // dbLogger.SetMaxAge(60);
+
+
+            var consoleBuilder = new ConsoleLoggerBuilder();
+            var dbBuilder = new DataBaseLoggerBuilder();
+
+            Director director = new Director();
+            director.Builder = consoleBuilder;
+            director.BuildLogger();
+
+            var consoleLogger = consoleBuilder.GetLogger();
+            director.Builder = dbBuilder;
+            director.BuildLogger();
+
+            var dbLogger = dbBuilder.GetLogger();
+
+
 
             //FileLogger fileLogger
             //...
