@@ -12,4 +12,17 @@ namespace Adapter
         //..
         //..
     }
+
+    public class UserServiceAdapter : IUserService
+    {  
+        private UserWebServiceClient _webservice;
+        public UserServiceAdapter(UserWebServiceClient webservice)
+        {
+            _webservice = webservice;
+        }
+        public string GetUser(int userId)
+        {
+            return _webservice.GetUserName(userId);
+        }
+    }
 }

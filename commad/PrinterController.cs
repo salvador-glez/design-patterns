@@ -2,36 +2,52 @@ using System;
 
 namespace Command
 {
+    public interface ICommand
+    {
+        public void Execute();
+    }
+
     public class PrinterController
     {
-        public void PrintXML(Document doc)
+        public void Print(ICommand doc)
         {
-            Console.WriteLine("Printing XML");
-        }
-
-        public void PrintImg(Document doc)
-        {
-            Console.WriteLine("Printing Img");
-        }
-
-        public void PrintPDF(Document doc)
-        {
-            Console.WriteLine("Printing PDF");
-        }
-
-        public void PrintWord(Document doc)
-        {
-            Console.WriteLine("Printing Word");
-        }
-
-        public void PrintHtml(Document doc)
-        {
-            Console.WriteLine("Printing Html");
+            doc.Execute();
         }
     }
 
-    public class Document
+    public class XmlDocument : ICommand
     {
-
+        public void Execute()
+        {
+            Console.WriteLine("Printing XML");
+        }
+    }
+    public class ImgDocument : ICommand
+    {
+        public void Execute()
+        {
+            Console.WriteLine("Printing Img");
+        }
+    }
+    public class PdfDocument : ICommand
+    {
+        public void Execute()
+        {
+            Console.WriteLine("Printing PDF");
+        }
+    }
+    public class WordDocument : ICommand
+    {
+        public void Execute()
+        {
+            Console.WriteLine("Printing Word");
+        }
+    }
+    public class HtmlDocument : ICommand
+    {
+        public void Execute()
+        {
+            Console.WriteLine("Printing Html");
+        }
     }
 }

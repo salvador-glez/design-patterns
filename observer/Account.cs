@@ -1,8 +1,11 @@
 namespace Observer
 {
-    public class Account
+    public class Account : Subject
     {
         public void Withdraw(int amount)
-        {}
+        {
+            //..
+            Notify(amount);
+        }
     }
 }

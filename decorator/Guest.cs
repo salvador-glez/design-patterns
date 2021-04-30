@@ -1,27 +1,76 @@
 namespace Decorator
 {
-    public class Guest
+    public abstract class Guest
     {
-        public virtual float GetDiscount() => 0;
-        public virtual string GetDiscountDescription() => "No discount";
+        public abstract float GetDiscount();
+        public abstract string GetDiscountDescription();
+    }
+    public class AdutlGuest : Guest
+    {
+        public override float GetDiscount() => 0;
+        public override string GetDiscountDescription() => "adult discount ";
     }
 
     public class MinorGuest : Guest
     {
         public override float GetDiscount() => 300;
-        public override string GetDiscountDescription() => "minor discount";
+        public override string GetDiscountDescription() => "minor discount ";
     }
 
-    public class MembershipGuest : Guest
+
+    public class GuestDecorator : Guest
     {
-        public override float GetDiscount() => 100;
-        public override string GetDiscountDescription() => "membership discount";
+        private Guest _guest;
+
+        public GuestDecorator(Guest guest)
+        {   
+            _guest = guest;
+        }
+
+        public override float GetDiscount()
+        {
+            return _guest.GetDiscount();
+        }
+
+        public override string GetDiscountDescription()
+        {
+            return _guest.GetDiscountDescription();
+        }
     }
 
-    public class MembershipMinorGuest : Guest
+    public class MembershiDecorator : GuestDecorator
     {
-        public override float GetDiscount() => 350;
-        public override string GetDiscountDescription() => "minor membership discount";
+        public MembershiDecorator(Guest guest) : base(guest)
+        {
+            
+        }
+        public override float GetDiscount() => base.GetDiscount() + 100;
+        public override string GetDiscountDescription() => base.GetDiscountDescription() + "membership discount ";
+    }
+
+    public class ForeignerDecorator : GuestDecorator
+    {
+
+        public ForeignerDecorator(Guest guest) : base(guest)
+        {
+            
+        }
+
+        public override float GetDiscount() => base.GetDiscount() + 5;
+        public override string GetDiscountDescription() => base.GetDiscountDescription() + "Foreigner discount ";
+    }
+
+
+    public class InGroupDecorator : GuestDecorator
+    {
+
+        public InGroupDecorator(Guest guest) : base(guest)
+        {
+            
+        }
+
+        public override float GetDiscount() => base.GetDiscount() + 8;
+        public override string GetDiscountDescription() => base.GetDiscountDescription() + "InGroup discount ";
     }
 
     //public class ForeignerGuest 

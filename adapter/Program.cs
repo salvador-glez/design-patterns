@@ -7,7 +7,9 @@ namespace Adapter
         static void Main(string[] args)
         {
             UserWebServiceClient service = new UserWebServiceClient();
-            //Process(service);
+            UserServiceAdapter adapter = new UserServiceAdapter(service);
+
+            Process(adapter);
         }
 
         public static void Process(IUserService service)

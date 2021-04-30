@@ -7,11 +7,11 @@ namespace Command
         static void Main(string[] args)
         {
             PrinterController controller = new PrinterController();
-            controller.PrintXML(new Document());
-            controller.PrintImg(new Document());
-            controller.PrintPDF(new Document());
-            controller.PrintWord(new Document());
-            controller.PrintHtml(new Document());
+            controller.Print(new XmlDocument());
+            controller.Print(new ImgDocument());
+            controller.Print(new PdfDocument());
+            controller.Print(new WordDocument());
+            controller.Print(new HtmlDocument());
         }
     }
 }
